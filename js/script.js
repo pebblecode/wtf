@@ -99,20 +99,40 @@ App.points = {
     App.points.updateView();
   },
   win: function() {
-    App.points._points += App.scoring.win;
+    App.points.updatePoints(App.scoring.win);
     App.points.updateView();
   },
   giveUp: function() {
-    App.points._points += App.scoring.giveUp;
+    App.points.updatePoints(App.scoring.giveUp);
     App.points.updateView();
   },
   anotherImage: function() {
-    App.points._points += App.scoring.anotherImage;
+    App.points.updatePoints(App.scoring.anotherImage);
     App.points.updateView();
   },
   wrongGuess: function() {
-    App.points._points += App.scoring.wrongGuess;
+    App.points.updatePoints(App.scoring.wrongGuess);
     App.points.updateView();
+  },
+
+  updatePoints: function(pointDiff) {
+    App.points._points += pointDiff;
+    var pointDiffId = "point-diff-" + (new Date().getTime()),
+        pointDiffClass = (pointDiff > 0) ? "positive" : "negative";
+
+    $("#pointsContainer").append("<div id='" + pointDiffId + "'' class='point-diff " + pointDiffClass + "'>" + pointDiff + "</div>");
+
+    var rndLeft = App.rndNumber($("#pointsContainer").width() / 2),
+        rndTop = App.rndNumber($("#pointsContainer").height() / 2);
+    $("#" + pointDiffId)
+      .css("left", rndLeft)
+      .css("top", rndTop)
+      .hide().fadeIn(500);
+
+    // Hide after a while
+    $("#" + pointDiffId).fadeOut(500, function() {
+      $("#" + pointDiffId).remove();
+    });
   },
 
   updateView: function() {
@@ -152,11 +172,15 @@ App.showAnswerAlert = function() {
   }, 2000);
 };
 
+App.rndNumber = function(max) {
+  return Math.floor(Math.random() * max);
+}
+
 App.nextGame = function() {
   App.initGameState();
 
   var words = App.guessWords,
-      rndNum = Math.floor(Math.random() * words.length),
+      rndNum = App.rndNumber(words.length),
       word = words[rndNum];
   $("#guess").val("");
 
