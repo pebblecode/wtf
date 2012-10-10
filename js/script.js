@@ -80,21 +80,63 @@ App.flickrImageUrl = function(imageObj) {
 
 };
 
-App.gameState = {
+App.scoring = {
+  win: 100,
+  giveUp: -15,
+  anotherImage: -5,
+  wrongGuess: -1
+}
+
+App.gameStateDefaults = {
   currentWord: "",
   imageObjs: []
 };
 
+App.points = {
+  _points: 0,
+  reset: function() {
+    App.points._points = 0;
+    App.points.updateView();
+  },
+  win: function() {
+    App.points._points += App.scoring.win;
+    App.points.updateView();
+  },
+  giveUp: function() {
+    App.points._points += App.scoring.giveUp;
+    App.points.updateView();
+  },
+  anotherImage: function() {
+    App.points._points += App.scoring.anotherImage;
+    App.points.updateView();
+  },
+  wrongGuess: function() {
+    App.points._points += App.scoring.wrongGuess;
+    App.points.updateView();
+  },
+
+  updateView: function() {
+    $("#points").html(App.points._points);
+  }
+};
+
+App.initGameState = function() {
+  App.gameState = App.gameStateDefaults;
+};
+
 App.init = function() {
-  // $(".alert").alert('close');
+  App.initGameState();
   App.nextGame();
 
   $("#next-image").click(function(event) {
+    App.points.anotherImage();
     App.showRandomImage();
   });
 
 
   $("#give-up").click(function(event) {
+    App.points.giveUp();
+
     App.showAnswerAlert();
     App.nextGame();
   });
@@ -111,7 +153,7 @@ App.showAnswerAlert = function() {
 };
 
 App.nextGame = function() {
-  App.gameState = {};
+  App.initGameState();
 
   var words = App.guessWords,
       rndNum = Math.floor(Math.random() * words.length),
@@ -165,12 +207,16 @@ $(document).ready(function() {
 
       $("#image").removeAttr("class");
       if (_.capitalize(App.gameState.currentWord) === guessedWord) {
+        App.points.win();
+
         $("#image").addClass("correct");
         $("#image").slideUp(500, function() {
           App.nextGame();
           $("#image").removeAttr("class");
         });
       } else {
+        App.points.wrongGuess();
+
         $("#image").addClass("wrong");
       }
     }

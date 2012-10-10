@@ -26,3 +26,9 @@
 #image.wrong {
   border: 20px solid #BD362F;
 }
+
+#points {
+  padding: 10px;
+  font-size: 100px;
+  line-height: 200px;
+}

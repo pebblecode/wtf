@@ -27,15 +27,32 @@
     </div>
 
     <div id="main" class="container">
+      <div class="row">
+        <div class="span12">
+          <h1>WTF! Where is it?</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span6">
+          <input id="guess"/>
+        </div>
+        <div class="span3">
+          <button id="next-image" class="btn-primary">I don't know, another image!</button>
+        </div>
+        <div class="span3">
+          <button id="give-up" class="btn-danger">I don't know, I give up!</button>
+        </div>
+      </div>
 
-      <h1>WTF! Where is it?</h1>
-
-      <input id="guess"/>
-
-      <button id="next-image" class="btn-primary">I don't know, another image!</button>
-      <button id="give-up" class="btn-danger">I don't know, I give up!</button>
-
-      <div id="image"></div>
+      <div class="row">
+        <div class="span8">
+          <div id="image"></div>
+        </div>
+        <div class="span4">
+          <h3>Points</h3>
+          <p id="points">0</p>
+        </div>
+      </div>
 
     </div> <!-- /container -->
 
