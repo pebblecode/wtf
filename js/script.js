@@ -395,6 +395,7 @@ App.gameStateWords = function() {
 
 App.initGameState = function() {
   App.gameState = App.gameStateDefaults;
+  $("#image").removeAttr("class");
 };
 
 App.init = function() {
