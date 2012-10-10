@@ -47,20 +47,16 @@ $(document).ready(function() {
     if (key === 13) {
       var guessedWord = _.capitalize(_.trim($("#guess").val()));
 
-      $("#status").removeAttr("class");
       $("#image").removeAttr("class");
       if (_.capitalize(App.gameState.currentWord) === guessedWord) {
-        $("#status").addClass("icon-ok");
         $("#image").addClass("correct");
         $("#image").slideUp(500, function() {
           App.nextGame();
           $("#image").removeAttr("class");
         });
       } else {
-        $("#status").addClass("icon-ban-circle");
         $("#image").addClass("wrong");
       }
-      $("#status").hide().fadeIn(100);
     }
   });
 
