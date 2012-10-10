@@ -13,4 +13,21 @@
 #image {
   clear: both;
   margin-top: 10px;
+  box-sizing: border-box;
+  border: 20px solid #f3f3f3;
+  width: 400px;
+}
+
+#image img {
+  width: 400px;
+  height: auto;
+  background: #;
+}
+
+#image.correct {
+  border: 20px solid #5BB75B;
+}
+
+#image.wrong {
+  border: 20px solid #BD362F;
 }

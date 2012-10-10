@@ -26,6 +26,10 @@ App.gameState = {
 }
 
 App.init = function() {
+  App.nextGame();
+};
+
+App.nextGame = function() {
   var words = _.keys(App.guessWords),
       rndNum = Math.floor(Math.random() * words.length),
       word = words[rndNum],
@@ -33,6 +37,7 @@ App.init = function() {
 
   $("#image").html("<img src='" + image + "'/>");
   App.gameState.currentWord = word;
+  $("#image").hide().slideDown(500);
 };
 
 $(document).ready(function() {
@@ -43,10 +48,17 @@ $(document).ready(function() {
       var guessedWord = _.capitalize(_.trim($("#guess").val()));
 
       $("#status").removeAttr("class");
+      $("#image").removeAttr("class");
       if (_.capitalize(App.gameState.currentWord) === guessedWord) {
         $("#status").addClass("icon-ok");
+        $("#image").addClass("correct");
+        $("#image").slideUp(500, function() {
+          App.nextGame();
+          $("#image").removeAttr("class");
+        });
       } else {
         $("#status").addClass("icon-ban-circle");
+        $("#image").addClass("wrong");
       }
       $("#status").hide().fadeIn(100);
     }
