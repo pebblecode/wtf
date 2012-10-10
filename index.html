@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>WTF</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">WTF: Where?</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="main" class="container">
+      <div class="row">
+        <div class="span12">
+          <h1 id="title">WTF! Where is it?</h1>
+
+          <div id="categories" class="btn-group" data-toggle="buttons-radio">
+            <button type="button" class="cities btn active">Cities</button>
+            <button type="button" class="moview btn">Movies</button>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="span6">
+          <input id="guess"/>
+        </div>
+        <div class="span3">
+          <button id="next-image" class="btn-primary">I don't know, another image!</button>
+        </div>
+        <div class="span3">
+          <button id="give-up" class="btn-danger">I don't know, I give up!</button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="span8">
+          <div id="image"></div>
+        </div>
+        <div id="pointsContainer" class="span4">
+          <h3>Points</h3>
+          <p id="points">0</p>
+        </div>
+      </div>
+
+    </div> <!-- /container -->
+
+    <script type="text/html" id="alert-template">
+      <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+         <%= alertMessage %> <span class="word"><%= word %></span>
+      </div>
+    </script>
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.1/underscore-min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.string/2.3.0/underscore.string.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>

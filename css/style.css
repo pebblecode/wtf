@@ -1,0 +1,64 @@
+#main {
+  margin-top: 50px;
+}
+
+#guess {
+
+}
+
+.alert {
+  position: absolute;
+  top: 145px;
+}
+
+#image {
+  margin-top: 10px;
+  box-sizing: border-box;
+  border: 20px solid #f3f3f3;
+  width: 500px;
+}
+
+#image img {
+  width: 500px;
+  height: auto;
+  background: #;
+}
+
+#image.correct {
+  border: 20px solid #5BB75B;
+}
+
+#image.wrong {
+  border: 20px solid #BD362F;
+}
+
+#points {
+  padding: 10px;
+  font-size: 100px;
+  line-height: 200px;
+}
+
+#categories {
+  margin-bottom: 50px;
+}
+
+#pointsContainer {
+  position: relative;
+}
+
+#pointsContainer .point-diff {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  font-size: 50px;
+  line-height: 50px;
+}
+
+#pointsContainer .positive {
+  color: #5BB75B;
+}
+
+#pointsContainer .negative {
+  color: #BD362F;
+}
