@@ -6,6 +6,11 @@
 
 }
 
+.alert {
+  position: absolute;
+  top: 145px;
+}
+
 #image {
   margin-top: 10px;
   box-sizing: border-box;
@@ -31,6 +36,10 @@
   padding: 10px;
   font-size: 100px;
   line-height: 200px;
+}
+
+#categories {
+  margin-bottom: 50px;
 }
 
 #pointsContainer {

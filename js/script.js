@@ -434,8 +434,10 @@ App.init = function() {
 App.alertTemplate = _.template($("#alert-template").html());
 
 App.showAnswerAlert = function() {
+  $(".alert").alert('close');
+
   var alert = App.alertTemplate({ word: App.gameState.currentWord, alertMessage: App.gameCategories[App.gameState.category].alertMessage });
-  $("#guess").before(alert);
+  $("#categories").after(alert);
   _.delay(function() {
     $(".alert").alert('close')
   }, 2000);
