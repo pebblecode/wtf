@@ -410,6 +410,7 @@ App.init = function() {
 
   $("#give-up").click(function(event) {
     App.points.giveUp();
+    $("#image").slideUp();
 
     App.showAnswerAlert();
     App.nextGame();
