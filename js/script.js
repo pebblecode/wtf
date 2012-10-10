@@ -203,10 +203,10 @@ $(document).ready(function() {
     var key = event.which;
 
     if (key === 13) {
-      var guessedWord = _.capitalize(_.trim($("#guess").val()));
+      var guessedWord = _.trim($("#guess").val()).toLowerCase();
 
       $("#image").removeAttr("class");
-      if (_.capitalize(App.gameState.currentWord) === guessedWord) {
+      if (App.gameState.currentWord.toLowerCase() === guessedWord) {
         App.points.win();
 
         $("#image").addClass("correct");
