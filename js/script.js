@@ -70,13 +70,13 @@ App.guessWords = [
   ];
 
 App.flickrSearchUrl = function(searchTerm) {
-  return "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=0bff7d4c04b7da09b1c294dfcb7da49b&tags="  + searchTerm + "&format=json";
+  return "http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=0bff7d4c04b7da09b1c294dfcb7da49b&tags="  + searchTerm + "&format=json&content_type=1";
 
 };
 
 App.flickrImageUrl = function(imageObj) {
   return "http://farm" + imageObj.farm + ".static.flickr.com/" +
-        imageObj.server + "/" + imageObj.id + "_" + imageObj.secret + "_" + "t.jpg";
+        imageObj.server + "/" + imageObj.id + "_" + imageObj.secret + ".jpg";
 
 };
 
