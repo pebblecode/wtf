@@ -1,3 +1,16 @@
 #main {
   margin-top: 50px;
 }
+
+#guess {
+  float: left;
+}
+
+#status {
+  margin-left: 10px;
+}
+
+#image {
+  clear: both;
+  margin-top: 10px;
+}
