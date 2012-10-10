@@ -9,7 +9,7 @@ App.guessWords = [
     'Mumbai',
     'Moscow',
     'Beijing',
-    'Sao Paulo',
+    'São Paulo',
     'Tianjin',
     'Guangzhou',
     'Delhi',
