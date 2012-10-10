@@ -29,12 +29,22 @@
     <div id="main" class="container">
 
       <h1>WTF! Where is it?</h1>
+
       <input id="guess"/>
-      <div id="status"></div>
       <div id="image"></div>
+
       <button id="next-image" class="btn-primary">I don't know, another image!</button>
+      <button id="give-up" class="btn-danger">I don't know, I give up!</button>
 
     </div> <!-- /container -->
+
+    <script type="text/html" id="alert-template">
+      <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        The place was: <span class="word"><%= word %></span>
+      </div>
+    </script>
+
     <script src="http://code.jquery.com/jquery-latest.js"></script>
 
     <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.1/underscore-min.js"></script>

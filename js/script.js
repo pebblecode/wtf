@@ -86,11 +86,28 @@ App.gameState = {
 };
 
 App.init = function() {
+  // $(".alert").alert('close');
   App.nextGame();
 
   $("#next-image").click(function(event) {
     App.showRandomImage();
   });
+
+
+  $("#give-up").click(function(event) {
+    App.showAnswerAlert();
+    App.nextGame();
+  });
+};
+
+App.alertTemplate = _.template($("#alert-template").html());
+
+App.showAnswerAlert = function() {
+  var alert = App.alertTemplate({ word: App.gameState.currentWord });
+  $("#guess").before(alert);
+  _.delay(function() {
+    $(".alert").alert('close')
+  }, 2000);
 };
 
 App.nextGame = function() {
