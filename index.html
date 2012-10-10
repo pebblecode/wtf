@@ -24,7 +24,7 @@
     <div id="main" class="container">
       <div class="row">
         <div class="span12">
-          <h1>WTF! Where is it?</h1>
+          <h1 id="title">WTF! Where is it?</h1>
 
           <div id="categories" class="btn-group" data-toggle="buttons-radio">
             <button type="button" class="cities btn active">Cities</button>
@@ -59,7 +59,7 @@
     <script type="text/html" id="alert-template">
       <div class="alert">
         <button type="button" class="close" data-dismiss="alert">×</button>
-        The place was: <span class="word"><%= word %></span>
+         <%= alertMessage %> <span class="word"><%= word %></span>
       </div>
     </script>
 

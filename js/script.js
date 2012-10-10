@@ -4,7 +4,9 @@ var App = App || {};
 
 App.gameCategories = {
   "city": {
+    title: "WTF! Where is it?",
     additionSearchTerms: "landmark",
+    alertMessage: "The place was:",
     words: [
       'Shanghai',
       'Istanbul',
@@ -73,7 +75,9 @@ App.gameCategories = {
     ]
   },
   "movie": {
-    additionSearchTerms: "movie",
+    title: "WTF! What movie is it?",
+    additionSearchTerms: "",
+    alertMessage: "The movie was:",
     words: [
       'The Shawshank Redemption',
       'The Godfather',
@@ -430,7 +434,7 @@ App.init = function() {
 App.alertTemplate = _.template($("#alert-template").html());
 
 App.showAnswerAlert = function() {
-  var alert = App.alertTemplate({ word: App.gameState.currentWord });
+  var alert = App.alertTemplate({ word: App.gameState.currentWord, alertMessage: App.gameCategories[App.gameState.category].alertMessage });
   $("#guess").before(alert);
   _.delay(function() {
     $(".alert").alert('close')
@@ -453,6 +457,8 @@ App.nextGame = function() {
   console.log(word);
 
   $.get(App.flickrSearchUrl(word));
+
+  $("#title").html(App.gameCategories[App.gameState.category].title);
 };
 
 App.showNextImage = function() {
