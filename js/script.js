@@ -458,7 +458,7 @@ App.nextGame = function() {
   $("#guess").val("");
 
   App.gameState.currentWord = word;
-  console.log(word);
+  // console.log(word);
 
   $.get(App.flickrSearchUrl(word));
 
