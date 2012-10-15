@@ -17,7 +17,10 @@ In the project folder, run a local server eg, python
     python -m SimpleHTTPServer
     # Open http://localhost:8000/
 
+Note: Please use your own flickr api key if you are going to do any serious development on it.
+
 ## Technologies used
 
 * [underscore.js](http://underscorejs.org/)
 * [twitter bootstrap](http://twitter.github.com/bootstrap/)
+* [flickr api](http://www.flickr.com/services/api/)
