@@ -3,7 +3,7 @@ _.mixin(_.string.exports());
 var App = App || {};
 
 App.gameCategories = {
-  "city": {
+  city: {
     title: "WTF! Where is it?",
     additionSearchTerms: "landmark",
     alertMessage: "The place was:",
@@ -74,7 +74,7 @@ App.gameCategories = {
       'Jaipur'
     ]
   },
-  "movie": {
+  movie: {
     title: "WTF! What movie is it?",
     additionSearchTerms: "",
     alertMessage: "The movie was:",
@@ -315,7 +315,7 @@ App.gameCategories = {
       'Ed Wood'
     ]
   }
-}
+};
 
 App.flickrSearchUrl = function(searchTerm) {
   var additionalSearchTerms = App.gameCategories[App.gameState.category].additionSearchTerms;
@@ -333,11 +333,12 @@ App.scoring = {
   giveUp: -15,
   anotherImage: -5,
   wrongGuess: -1
-}
+};
 
 App.gameStateDefaults = {
   currentWord: "",
   imageObjs: [],
+  prevImageObjs: [],
   category: "city"
 };
 
@@ -391,7 +392,7 @@ App.points = {
 
 App.gameStateWords = function() {
   return App.gameCategories[App.gameState.category].words;
-}
+};
 
 App.initGameState = function() {
   App.gameState = App.gameStateDefaults;
@@ -419,7 +420,7 @@ App.init = function() {
   $("#categories button").click(function(event) {
 
     var wordListIndex = $(event.target).prev().length;
-    console.log(wordListIndex);
+    //console.log(wordListIndex);
     switch(wordListIndex) {
     case 0: // Cities
       App.gameState.category = "city";
@@ -441,13 +442,13 @@ App.showAnswerAlert = function() {
   var alert = App.alertTemplate({ word: App.gameState.currentWord, alertMessage: App.gameCategories[App.gameState.category].alertMessage });
   $("#categories").after(alert);
   _.delay(function() {
-    $(".alert").alert('close')
+    $(".alert").alert('close');
   }, 2000);
 };
 
 App.rndNumber = function(max) {
   return Math.floor(Math.random() * max);
-}
+};
 
 App.nextGame = function() {
   App.initGameState();
@@ -470,9 +471,10 @@ App.showNextImage = function() {
 };
 
 function jsonFlickrApi(data) {
-  console.log("jsonFlickrApi", data);
+  //console.log("jsonFlickrApi", data);
 
   App.gameState.imageObjs = data.photos.photo;
+  App.gameState.prevImageObjs = [];
   App.showRandomImage();
 }
 
@@ -481,21 +483,33 @@ App.showRandomImage = function() {
 
   $("#image").html("<img src='" + imageUrl + "'/>");
   $("#image").hide().slideDown(500);
-}
+};
 
 App.randomImageUrl = function() {
   var image = App.randomImage(),
       imageUrl = App.flickrImageUrl(image);
 
   return imageUrl;
-}
+};
 
 App.randomImage = function() {
   var numImages = App.gameState.imageObjs.length,
-      rndNum = Math.floor(Math.random() * numImages);
+      imageObj,
+      rndNum;
+  
+  if (numImages === 0) {
+    App.gameState.imageObjs = App.gameState.prevImageObjs;
+    App.gameState.prevImageObjs = [];
+  }
+  
+  rndNum = App.rndNumber(numImages);
 
-  return App.gameState.imageObjs[rndNum];
-}
+  imageObj = App.gameState.imageObjs.splice(rndNum, 1);
+  
+  App.gameState.prevImageObjs = App.gameState.prevImageObjs.concat(imageObj);
+  
+  return imageObj[0];
+};
 
 $(document).ready(function() {
   $("#guess").keypress(function(event) {
